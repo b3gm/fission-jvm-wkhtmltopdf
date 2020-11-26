@@ -10,7 +10,7 @@ COPY src /usr/src/myapp/src/
 RUN mvn package
 
 FROM openjdk:8-jdk-alpine
-RUN apk add wkhtmltopdf
+RUN apk add wkhtmltopdf ttf-dejavu ttf-droid ttf-freefont ttf-liberation ttf-ubuntu-font-family
 VOLUME /tmp
 COPY --from=BUILD /usr/src/myapp/target/env-java-0.0.1-SNAPSHOT.jar /app.jar
 ENTRYPOINT java ${JVM_OPTS} -Djava.security.egd=file:/dev/./urandom -jar /app.jar --server.port=8888
